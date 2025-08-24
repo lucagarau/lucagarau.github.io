@@ -1,0 +1,23 @@
+[
+  {
+    "url": "assets/img/photos/london1.jpg",
+    "description": "Vista del Big Ben a Londra all'uscita della stazione della metro Westminster.",
+    "date": "19-01-2024"
+  },
+  {
+    "url": "assets/img/photos/praga_fiume.jpg",
+    "description": "Panoramica del fiume Moldava a Praga. Al centro il ponte Carlo.",
+    "date": "30-05-2025"
+  },
+  {
+    "url": "assets/img/photos/mare1.png",
+    "description": "Foto area del mare sotto la Sella del Diavolo a Cagliari.",
+    "date": "06-2025"
+  },
+  {
+    "url": "assets/img/photos/saintmalo.jpg",
+    "description": "Case tipiche Bretoni. Foto scattata a Saint-Malo in Francia.",
+    "date": "03-2025"
+  }
+  
+]
