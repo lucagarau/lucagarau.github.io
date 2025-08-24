@@ -1,1 +1,3 @@
-# lucagarau.github.io
+# README
+
+Istruzioni per modificare il sito.

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Triangle-triangle intersections with different numerical representations",
+    "authors": ["Luca Garau", "Riccardo Scateni", "Gianmarco Cherchi"],
+    "year": 2025,
+    "venue": "IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)",
+    "doi": "10.1109/VRW66409.2025.00092",
+    "urlPdf": "https://doi.org/10.1109/VRW66409.2025.00092",
+    "publisher": "IEEE",
+    "volume": "",
+    "issue": "",
+    "pages": "401–404"
+  },
+  {
+    "title": "A robust approach to detect intersections between triangles with different numerical representations",
+    "authors": ["Luca Garau", "Gianmarco Cherchi"],
+    "year": 2025,
+    "venue": "International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision (WSCG)",
+    "doi": "10.24132/CSRN.2025-7",
+    "urlPdf": "https://doi.org/10.24132/CSRN.2025-7",
+    "publisher": "WSCG",
+    "volume": "",
+    "issue": "",
+    "pages": ""
+  }
+]

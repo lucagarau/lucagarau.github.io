@@ -1,0 +1,130 @@
+{
+  "profile": {
+    "name": "Luca Garau",
+    "role": "Researcher & Developer",
+    "bio": "Specialista in Computer Graphics, AI e Geometry Processing. Ricercatore presso l'Università di Cagliari.",
+    "location": "Cagliari, Italia",
+    "contacts": {
+      "email": "lucagarau147@gmail.com",
+      "github": "https://github.com/username",
+      "linkedin": "https://www.linkedin.com/in/username/"
+    }
+  },
+  "sections": [
+    {
+      "id": "experience",
+      "title": "Esperienza",
+      "items": [
+        {
+          "logo": "assets/img/logos/unica.png",
+          "title": "Research Fellow",
+          "organization": "University of Cagliari - DMI",
+          "period": "2025 – Presente",
+          "description": [
+            "Ricerca in Computer Graphics e Geometry Processing"
+          ]
+        },
+        {
+          "logo": "assets/img/logos/unica.png",
+          "title": "Research Fellow",
+          "organization": "University of Cagliari - DIEE",
+          "period": "2024 – 2025",
+          "description": [
+            "Analisi di configurazioni di mesh coding per contenuti immersivi in VR"
+          ]
+        },
+        {
+          "logo": "assets/img/logos/unica.png",
+          "title": "Teaching Assistant (Database)",
+          "organization": "University of Cagliari",
+          "period": "2024 – Presente",
+          "description": [
+            "Supporto ai laboratori per l'insegnamento di SQL"
+          ]
+        },
+        {
+          "logo": "assets/img/logos/unica.png",
+          "title": "Teaching Assistant (Numerical Methods)",
+          "organization": "University of Cagliari",
+          "period": "2023 – Presente",
+          "description": [
+            "Supporto al corso di Calcolo Scientifico e Metodi Numerici con Matlab"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "title": "Formazione",
+      "items": [
+        {
+          "logo": "assets/img/logos/unica.png",
+          "title": "Master in Computer Science (Graphics and Vision)",
+          "organization": "University of Cagliari",
+          "period": "2023 – 2025",
+          "description": [
+            "Tesi: Classification and Robust Management of Triangle Intersections Using Alternative Numerical Representations",
+            "Voto: 100/100 cum laude",
+            "Supervisor: Dott. Gianmarco Cherchi"
+          ]
+        },
+        {
+          "logo": "assets/img/logos/unica.png",
+          "title": "Bachelor in Computer Science",
+          "organization": "University of Cagliari",
+          "period": "2021 – 2023",
+          "description": [
+            "Tesi: An AI Approach to EEG-based Emotion Recognition using a Consumer Device",
+            "Voto: 110/110 cum laude",
+            "Supervisor: Prof. Daniele Riboni"
+          ]
+        },
+        {
+          "logo": "assets/img/logos/eg.png",
+          "title": "EG PhD School",
+          "organization": "Eurographics",
+          "period": "2024",
+          "description": [
+            "AI Techniques for 3D Reconstruction, Rendering, and Analysis"
+          ]
+        },
+        {
+          "logo": "assets/img/logos/samsung.png",
+          "title": "Samsung Innovation Campus",
+          "organization": "Samsung Electronics Italia SPA",
+          "period": "2021",
+          "description": [
+            "Corso su Internet of Things in collaborazione con Università di Cagliari (voto 30L)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "title": "Competenze",
+      "items": [
+        {
+          "logo": "",
+          "title": "Sistemi Operativi",
+          "organization": "",
+          "period": "",
+          "description": ["Windows", "Unix/Linux", "macOS"]
+        },
+        {
+          "logo": "",
+          "title": "Linguaggi di Programmazione",
+          "organization": "",
+          "period": "",
+          "description": ["Python", "C", "C++", "C#", "Java", "Matlab", "SQL"]
+        },
+        {
+          "logo": "",
+          "title": "Lingue",
+          "organization": "",
+          "period": "",
+          "description": ["Italiano (madrelingua)", "Inglese (fluente)"]
+        }
+      ]
+    }
+  ]
+}
