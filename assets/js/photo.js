@@ -37,18 +37,35 @@ fetch('../data/photos.json')
 function renderPhotos(photos) {
   const container = document.getElementById("photo-gallery");
   container.innerHTML = '';
+
+  // rotazioni e spostamenti leggeri per "sparpagliare"
+  const ROTATIONS = [-4, -3, -2, -1.5, -1, 1, 1.5, 2, 3, 4]; // gradi
+  const STAGGERS = ["stagger-1", "stagger-2", "stagger-3", "stagger-4"];
+
   photos.forEach((photo, i) => {
     const col = document.createElement("div");
     col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
     col.dataset.index = i;
 
+    // scegli rotazione/shift casuali e una classe di stagger per rompere la regolarità
+    const rot = ROTATIONS[Math.floor(Math.random() * ROTATIONS.length)];
+    const shift = Math.floor(Math.random() * 10) - 5; // da -5px a +4px
+    col.classList.add(STAGGERS[Math.floor(Math.random() * STAGGERS.length)]);
+
     col.innerHTML = `
-        <div class="polaroid" role="button" tabindex="0" aria-label="Apri foto: ${photo.description}">
-          <img src="../${photo.url}" alt="${photo.description}" loading="lazy">
-          <div class="caption">${photo.description}</div>
-          <div class="date-label">${photo.date}</div>
-        </div>
-      `;
+      <div class="polaroid" role="button" tabindex="0" aria-label="Apri foto: ${photo.description}">
+        <img src="../${photo.url}" alt="${photo.description}" loading="lazy">
+        <div class="caption">${photo.description}</div>
+        <div class="date-label">${photo.date}</div>
+      </div>
+    `;
+
+    // applica variabili CSS alla singola polaroid
+    const card = col.querySelector('.polaroid');
+    card.style.setProperty('--rot', rot + 'deg');
+    card.style.setProperty('--shift', shift + 'px');
+  
+
     container.appendChild(col);
   });
 }
@@ -141,7 +158,7 @@ function prevPhoto() {
   renderLightbox();
 }
 
-lightbox.querySelector('.lb-close').addEventListener('click', (e) => { 
-  e.stopPropagation(); 
-  closeLightbox(); 
+lightbox.querySelector('.lb-close').addEventListener('click', (e) => {
+  e.stopPropagation();
+  closeLightbox();
 });
