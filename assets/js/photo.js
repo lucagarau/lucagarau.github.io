@@ -38,19 +38,18 @@ function renderPhotos(photos) {
   const container = document.getElementById("photo-gallery");
   container.innerHTML = '';
 
-  // rotazioni e spostamenti leggeri per "sparpagliare"
-  const ROTATIONS = [-4, -3, -2, -1.5, -1, 1, 1.5, 2, 3, 4]; // gradi
-  const STAGGERS = ["stagger-1", "stagger-2", "stagger-3", "stagger-4"];
+  const ROTATIONS = [-4,-3,-2,-1.5,-1,1,1.5,2,3,4];
+  const STAGGERS = ["stagger-1","stagger-2","stagger-3","stagger-4"];
 
   photos.forEach((photo, i) => {
     const col = document.createElement("div");
+    // base: 12 / 6 / 4 / 3
     col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
     col.dataset.index = i;
 
-    // scegli rotazione/shift casuali e una classe di stagger per rompere la regolarità
-    const rot = ROTATIONS[Math.floor(Math.random() * ROTATIONS.length)];
-    const shift = Math.floor(Math.random() * 10) - 5; // da -5px a +4px
-    col.classList.add(STAGGERS[Math.floor(Math.random() * STAGGERS.length)]);
+    const rot = ROTATIONS[Math.floor(Math.random()*ROTATIONS.length)];
+    const shift = Math.floor(Math.random()*10) - 5;
+    col.classList.add(STAGGERS[Math.floor(Math.random()*STAGGERS.length)]);
 
     col.innerHTML = `
       <div class="polaroid" role="button" tabindex="0" aria-label="Apri foto: ${photo.description}">
@@ -60,15 +59,31 @@ function renderPhotos(photos) {
       </div>
     `;
 
-    // applica variabili CSS alla singola polaroid
     const card = col.querySelector('.polaroid');
+    const img = card.querySelector('img');
+
+    // applica rotazioni/shift
     card.style.setProperty('--rot', rot + 'deg');
     card.style.setProperty('--shift', shift + 'px');
-  
+
+    // dopo il load, decidi se è landscape o portrait
+    img.addEventListener('load', () => {
+      const landscape = img.naturalWidth > img.naturalHeight;
+
+      if (landscape) {
+        // fai occupare più spazio sui layout medi/grandi
+        col.classList.remove('col-md-4','col-lg-3');
+        col.classList.add('col-md-6','col-lg-4'); // 2/12 e 4/12 => più larghe
+        card.classList.add('is-landscape');
+      } else {
+        card.classList.add('is-portrait');
+      }
+    }, { once:true });
 
     container.appendChild(col);
   });
 }
+
 
 function attachGalleryHandlers() {
   const container = document.getElementById("photo-gallery");
