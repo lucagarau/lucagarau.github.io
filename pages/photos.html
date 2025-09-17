@@ -1,6 +1,7 @@
 <!-- pages/photos.html -->
 <!DOCTYPE html>
 <html lang="it" data-bs-theme="auto">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,21 +15,24 @@
     .polaroid {
       background: white;
       padding: 10px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
       text-align: center;
       border-radius: 6px;
       position: relative;
     }
+
     .polaroid img {
       max-width: 100%;
       height: auto;
       border-radius: 4px;
     }
+
     .caption {
       font-size: 0.9rem;
       color: #333;
       margin-top: 5px;
     }
+
     .date-label {
       position: absolute;
       bottom: 10px;
@@ -36,40 +40,181 @@
       font-size: 0.75rem;
       color: #999;
     }
+      /* Evita lo scroll quando il lightbox è aperto */
+      body.no-scroll {
+        overflow: hidden;
+      }
+
+      /* Overlay (copre tutto lo schermo) */
+      #lightbox {
+        position: fixed;
+        inset: 0;
+        display: none;
+        z-index: 9999;
+      }
+
+      #lightbox.open {
+        display: block;
+      }
+
+      /* Sfondo scurito + blur */
+      #lightbox .lb-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      /* Layer contenuti */
+      #lightbox .lb-layer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: clamp(12px, 3vw, 32px);
+        display: grid;
+        place-items: center;
+      }
+
+      /* Polaroid grande (reusa look della gallery, ma dimensioni responsive) */
+      .polaroid.polaroid-large {
+        max-width: min(92vw, 1100px);
+        max-height: min(86vh, 900px);
+        overflow: hidden;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+        padding: 10px 10px 18px;
+        outline: none;
+        /* focus gestito dal container */
+      }
+
+      .polaroid.polaroid-large img {
+        display: block;
+        max-width: 100%;
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+        object-fit: contain;
+      }
+
+      .polaroid.polaroid-large .caption {
+        margin-top: 10px;
+        font-size: 1.05rem;
+        text-align: center;
+        color: #222;
+      }
+
+      .polaroid.polaroid-large .date-label {
+        margin-top: 2px;
+        font-size: .9rem;
+        text-align: center;
+        color: #666;
+      }
+
+      /* Pulsante chiudi / Torna alla galleria */
+      #lightbox .lb-close {
+        position: absolute;
+        top: clamp(8px, 2vw, 16px);
+        right: clamp(8px, 2vw, 16px);
+        font-size: 28px;
+        line-height: 1;
+        background: #ffffff;
+        border: none;
+        border-radius: 999px;
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+      }
+
+      #lightbox .lb-close:hover {
+        transform: scale(1.04);
+      }
+
+      /* Navigazione (prev/next) */
+      #lightbox .lb-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 54px;
+        height: 54px;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 32px;
+        line-height: 1;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+        display: grid;
+        place-items: center;
+      }
+
+      #lightbox .lb-prev {
+        left: clamp(8px, 2vw, 16px);
+      }
+
+      #lightbox .lb-next {
+        right: clamp(8px, 2vw, 16px);
+      }
+
+      #lightbox .lb-nav:hover {
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      /* Accessibilità focus */
+      #lightbox .lb-close:focus,
+      #lightbox .lb-nav:focus,
+      .polaroid.polaroid-large:focus {
+        outline: 3px solid #5b9dd9;
+        outline-offset: 2px;
+      }
+
+      /* Cursori utili */
+      #lightbox.open img {
+        cursor: zoom-out;
+      }
+
+      #photo-gallery .polaroid {
+        cursor: zoom-in;
+      }
+    
   </style>
 </head>
+
 <body>
   <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" aria-label="Main navigation">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="../../index.html">Luca Garau</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="./photos.html">Photos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./projects.html">Projects</a></li>
-                </ul>
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-sm btn-outline-secondary me-2" id="themeToggle"
-                        aria-label="Toggle dark mode">
-                        <i class="bi bi-moon"></i>
-                    </button>
-                    <select id="langDropdown" class="form-select form-select-sm ms-2" style="width: auto">
-                        <option value="it">IT</option>
-                        <option value="en">EN</option>
-                    </select>
-                </div>
-            </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../../index.html">Luca Garau</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="./photos.html">Photos</a></li>
+          <li class="nav-item"><a class="nav-link" href="./projects.html">Projects</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-sm btn-outline-secondary me-2" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="bi bi-moon"></i>
+          </button>
+          <select id="langDropdown" class="form-select form-select-sm ms-2" style="width: auto">
+            <option value="it">IT</option>
+            <option value="en">EN</option>
+          </select>
         </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 
   <!-- Intro -->
   <header class="container py-5">
     <h1 class="mb-3">Galleria Fotografica</h1>
-    <p class="lead">Uno dei miei hobby principali è la fotografia. In questa pagina ho voluto conservare una selezione di momenti e luoghi che ho voluto immortalare nel tempo. Ogni foto racconta una piccola storia.</p>
+    <p class="lead">Uno dei miei hobby principali è la fotografia. In questa pagina ho voluto conservare una selezione
+      di momenti e luoghi che ho voluto immortalare nel tempo. Ogni foto racconta una piccola storia.</p>
   </header>
 
   <!-- Photo Gallery -->
@@ -79,12 +224,14 @@
 
   <!-- Footer -->
   <footer class="bg-body-tertiary text-center py-4 mt-5">
-    <p>&copy; <span id="year"></span> Luca Garau. <button id="footer-themeToggle" class="btn btn-sm btn-link">Toggle tema</button></p>
+    <p>&copy; <span id="year"></span> Luca Garau. <button id="footer-themeToggle" class="btn btn-sm btn-link">Toggle
+        tema</button></p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/config.js"></script>
-  <script src="../assets/js/main.js"></script>
-  <script src="../assets/js/photo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="../assets/js/config.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/photo.js" defer></script>
 </body>
+
 </html>
