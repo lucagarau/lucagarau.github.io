@@ -1,0 +1,41 @@
+# Galleria fotografica (pages/photos.html)
+# Per aggiungere una foto: copiala in assets/img/photos/ e aggiungi una voce qui.
+# "date" è testo libero (es. 2025-05-30 oppure 06-2025).
+
+- file: assets/img/photos/gatto.jpg
+  date: 14-09-2025
+  caption:
+    it: Foto notturna di un gatto nel quartiere di Castello, Cagliari.
+    en: Night shot of a cat in the Castello district, Cagliari.
+  camera: Sony a6100 · 30mm f/2.8
+
+- file: assets/img/photos/praga_fiume.jpg
+  date: 30-05-2025
+  caption:
+    it: Panoramica del fiume Moldava a Praga. Al centro il ponte Carlo.
+    en: Panoramic view of the Vltava river in Prague. In the center, Charles Bridge.
+
+- file: assets/img/photos/mare1.png
+  date: 06-2025
+  caption:
+    it: Foto aerea del mare sotto la Sella del Diavolo a Cagliari.
+    en: Aerial photo of the sea below the Sella del Diavolo in Cagliari.
+
+- file: assets/img/photos/saintmalo.jpg
+  date: 03-2025
+  caption:
+    it: Case tipiche bretoni a Saint-Malo, Francia.
+    en: Typical Breton houses in Saint-Malo, France.
+
+- file: assets/img/photos/london1.jpg
+  date: 19-01-2024
+  caption:
+    it: Il Big Ben all'uscita della stazione della metro di Westminster, Londra.
+    en: Big Ben from the exit of Westminster underground station, London.
+
+- file: assets/img/photos/lunetta_nikon.jpg
+  date: 31-01-2018
+  caption:
+    it: Primo piano di un cucciolo di cane, con luce naturale.
+    en: Close-up of a puppy in natural light.
+  camera: Nikon D60 · 40mm f/3.5

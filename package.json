@@ -1,0 +1,12 @@
+{
+  "name": "lucagarau.github.io",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python -m http.server 8000",
+    "cv": "node scripts/build-cv-pdf.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.11.1"
+  }
+}

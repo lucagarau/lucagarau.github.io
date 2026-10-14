@@ -1,0 +1,44 @@
+# Rebuilds the CV PDFs whenever the CV data or its layout changes, and commits them back.
+name: Build CV PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/cv.yml
+      - cv.html
+      - assets/css/cv.css
+      - assets/js/cv.js
+      - assets/img/profile.png
+      - scripts/build-cv-pdf.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cv-pdf
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install --no-audit --no-fund
+
+      - run: npm run cv
+
+      - name: Commit PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/cv/*.pdf
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Aggiorna PDF del CV"
+          git push

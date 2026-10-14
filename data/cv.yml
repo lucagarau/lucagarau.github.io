@@ -1,0 +1,271 @@
+# =====================================================================
+#  CV di Luca Garau — UNICA FONTE DI VERITÀ
+# ---------------------------------------------------------------------
+#  Questo file alimenta:
+#    • la home del sito (index.html)
+#    • la pagina CV stampabile (cv.html)
+#    • i PDF scaricabili (assets/cv/*.pdf), rigenerati in automatico
+#      da GitHub Actions a ogni push che modifica questo file.
+#
+#  Regole veloci:
+#    • I testi bilingue si scrivono così:   { it: "...", en: "..." }
+#      oppure su più righe:
+#          it: Testo italiano
+#          en: English text
+#      Se un testo è uguale nelle due lingue, scrivilo e basta.
+#    • Nella forma { it: ..., en: ... } un testo che contiene una virgola
+#      o i due punti va tra virgolette: { it: "Cagliari, Italia", en: ... }
+#    • L'ordine nel file è l'ordine sul sito: metti in alto le voci recenti.
+#    • "end: present" mostra "Presente"/"Present".
+#    • Le righe che iniziano con # sono commenti e vengono ignorate.
+# =====================================================================
+
+profile:
+  name: Luca Garau
+  role: { it: Dottorando & Sviluppatore, en: PhD Student & Developer }
+  location: { it: "Cagliari, Italia", en: "Cagliari, Italy" }
+  photo: assets/img/profile.png
+  # Mostrati SOLO nel CV stampabile/PDF, non sul sito. Lascia vuoto per nasconderli.
+  birthdate: 19/07/2001
+  phone: +39 3342573140
+  bio:
+    it: >-
+      Sono uno sviluppatore specializzato in Computer Graphics e AI, dottorando nazionale in AI & Society presso l'ISTI-CNR e l'Università di Pisa, in collaborazione con l'Università di Cagliari.
+      Lavoro principalmente nel campo della Digital Fabrication e del Geometry Processing.
+    en: >-
+      I am a developer specialized in Computer Graphics and AI, a national PhD student in AI & Society at ISTI-CNR and the University of Pisa, in collaboration with the University of Cagliari.
+      I mainly work in the field of Digital Fabrication and Geometry Processing.
+  links:
+    email: lucagarau147@gmail.com
+    github: https://github.com/lucagarau
+    linkedin: https://www.linkedin.com/in/lucagarau/
+    instagram: https://www.instagram.com/luca_garau_01/
+    scholar: https://scholar.google.com/citations?user=xowI9csAAAAJ&hl=it&oi=ao
+
+experience:
+  - title: Research Fellow
+    org: { it: Università di Cagliari — DMI, en: University of Cagliari — DMI }
+    logo: assets/img/logos/unica.png
+    start: 2025
+    end: 2026
+    summary:
+      it: Ricerca in Computer Graphics e Geometry Processing.
+      en: Research in Computer Graphics and Geometry Processing.
+    details:
+      it: >-
+        Assegno di ricerca presso il Dipartimento di Matematica e Informatica (DMI)
+        dell'Università di Cagliari in Computer Graphics e Geometry Processing.
+      en: >-
+        Research grant with the Department of Mathematics and Computer Science (DMI)
+        of the University of Cagliari in Computer Graphics and Geometry Processing.
+
+  - title: Research Fellow
+    org: { it: Università di Cagliari — DIEE, en: University of Cagliari — DIEE }
+    logo: assets/img/logos/unica.png
+    start: 2024
+    end: 2025
+    summary:
+      it: Analisi di configurazioni di mesh coding per contenuti immersivi in VR.
+      en: Analysis of mesh coding configurations for immersive VR content.
+    details:
+      it: >-
+        Assegno di ricerca presso il Dipartimento di Ingegneria Elettrica ed Elettronica (DIEE)
+        sull'analisi di configurazioni di mesh coding per lo streaming adattivo di contenuti
+        immersivi in ambienti di realtà virtuale.
+      en: >-
+        Research grant with the Department of Electrical and Electronic Engineering (DIEE)
+        of the University of Cagliari on the analysis of mesh coding configurations for
+        adaptive streaming of immersive contents in virtual reality environments.
+
+  - title: { it: Teaching Assistant — Basi di Dati, en: Teaching Assistant — Databases }
+    org: { it: Università di Cagliari, en: University of Cagliari }
+    logo: assets/img/logos/unica.png
+    start: 2024
+    end: 2026
+    summary:
+      it: Supporto ai laboratori per l'insegnamento di SQL.
+      en: Assistance with laboratory lessons aimed at teaching the SQL language.
+
+  - title: { it: Teaching Assistant — Metodi Numerici, en: Teaching Assistant — Numerical Methods }
+    org: { it: Università di Cagliari, en: University of Cagliari }
+    logo: assets/img/logos/unica.png
+    start: 2023
+    end: 2025
+    summary:
+      it: Supporto al corso di Calcolo Scientifico e Metodi Numerici con Matlab.
+      en: Support for the Scientific Computing and Numerical Methods course with Matlab.
+    details:
+      it: >-
+        Supporto alle lezioni e ai laboratori del corso di Calcolo Scientifico e Metodi Numerici:
+        fondamenti di analisi numerica, algebra lineare, approssimazione di funzioni, risoluzione
+        di equazioni non lineari, con esercitazioni pratiche in Matlab.
+      en: >-
+        Lecture support and lab assistance for the course of Scientific Calculus and Numerical
+        Methods. The course covers fundamentals of numerical analysis, linear algebra, function
+        approximation, nonlinear equation solving, and includes practical exercises in Matlab.
+
+education:
+
+  - title: { it: Dottorato di Interesse Nazionale in Ai & Society, en: National PhD in AI & Society }
+    org: { it: Università di Pisa | ISTI-CNR, en: University of Pisa | ISTI-CNR }
+    logo: assets/img/logos/isti.jpeg
+    start: 2026
+    end: present
+    supervisor: Dt. Daniela Giorgi, Prof. Gianmarco Cherchi, Dt. Luigi Malamo
+    details:
+      it: >-
+        Dottorato nazionale in AI & Society presso l'ISTI-CNR e l'Università di Pisa, in collaborazione con l'Università di Cagliari.
+        Il lavoro di ricerca si concentra nella Digital Fabrication e nel Geometry Processing, in particolare nella design computazionale di stampi rigidi e riusabili multi pezzo.
+      en: >-
+        National PhD in AI & Society at ISTI-CNR and the University of Pisa, in collaboration with the University of Cagliari.
+        The research work focuses on Digital Fabrication and Geometry Processing, particularly in the computational design of multi-piece rigid molds.
+
+  - title: { it: Laurea Magistrale in Informatica (Graphics and Vision), en: Master's Degree in Computer Science (Graphics and Vision) }
+    org: { it: Università di Cagliari, en: University of Cagliari }
+    logo: assets/img/logos/unica.png
+    start: 2023
+    end: 2025
+    grade: 100/100 cum laude
+    thesis: Classification and Robust Management of Triangle Intersections Using Alternative Numerical Representations
+    supervisor: Dott. Gianmarco Cherchi
+    details:
+      it: >-
+        Tesi incentrata su un nuovo approccio per rilevare e classificare le intersezioni tra
+        triangoli indipendentemente dal sistema di rappresentazione numerica sottostante.
+      en: >-
+        Thesis focused on the development of a novel approach for detecting and classifying
+        triangle intersections independently of the underlying numerical representation system.
+
+  - title: { it: Laurea Triennale in Informatica, en: Bachelor's Degree in Computer Science }
+    org: { it: Università di Cagliari, en: University of Cagliari }
+    logo: assets/img/logos/unica.png
+    start: 2021
+    end: 2023
+    grade: 110/110 cum laude
+    thesis: An AI Approach to EEG-based Emotion Recognition using a Consumer Device
+    supervisor: Prof. Daniele Riboni
+    details:
+      it: Riconoscimento delle emozioni da segnali EEG con un approccio di Machine Learning.
+      en: Recognition of emotions via EEG signals using a Machine Learning approach.
+
+  - title: SGP 2026 Phd School
+    org: SGP Conference - Universitat Bern
+    logo: assets/img/logos/berna.webp
+    start: 2026
+    summary:
+      it: "PhD School of SGP 2026 conference."
+      en: "PhD School of SGP 2026 conference."
+
+  - title: New Mathematical Methods in Geometric Processing
+    org: University of Bonn
+    logo: assets/img/logos/bonn.jpg
+    start: 2026
+    summary:
+      it: "PhD School on New Mathematical Methods in Geometric Processing."
+      en: "PhD School on New Mathematical Methods in Geometric Processing."
+
+  - title: EG PhD School
+    org: Eurographics Italian Chapter
+    logo: assets/img/logos/eg.png
+    start: 2025
+    summary:
+      it: "PhD School on Geometric Intelligence: Theory and Practice of 3D Understanding in Computer Graphics and 3D Computer Vision."
+      en: "PhD School on Geometric Intelligence: Theory and Practice of 3D Understanding in Computer Graphics and 3D Computer Vision."
+
+  - title: EG PhD School
+    org: Eurographics Italian Chapter
+    logo: assets/img/logos/eg.png
+    start: 2024
+    summary:
+      it: "PhD School on Modern Computer Graphics: AI Techniques for 3D Reconstruction, Rendering, and Analysis."
+      en: "PhD School on Modern Computer Graphics: AI Techniques for 3D Reconstruction, Rendering, and Analysis."
+
+  - title: Samsung Innovation Campus
+    org: Samsung Electronics Italia S.p.A.
+    logo: assets/img/logos/samsung.png
+    start: 2021
+    summary:
+      it: Corso sull'Internet of Things in collaborazione con l'Università di Cagliari (voto 30L).
+      en: Internet of Things course in collaboration with the University of Cagliari (top grade, 30L).
+
+publications:
+  - title: A robust approach to detect intersections between triangles with different numerical representations
+    authors: [Luca Garau, Gianmarco Cherchi]
+    year: 2025
+    venue: International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision (WSCG)
+    type: inproceedings   # usato per BibTeX: article | inproceedings
+    doi: 10.24132/CSRN.2025-7
+    note:
+      it: >-
+        Full paper presentato a WSCG 2025. Introduce un approccio robusto per rilevare e classificare
+        le intersezioni tra triangoli, con una libreria C++ header-only open-source.
+      en: >-
+        Full paper presented at WSCG 2025. Introduces a novel and robust approach for detecting and
+        classifying triangle intersections, along with an open-source C++ header-only tool.
+
+  - title: Triangle-triangle intersections with different numerical representations
+    authors: [Luca Garau, Riccardo Scateni, Gianmarco Cherchi]
+    year: 2025
+    venue: IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)
+    type: inproceedings
+    pages: 401–404
+    publisher: IEEE
+    doi: 10.1109/VRW66409.2025.00092
+    note:
+      it: >-
+        Short paper presentato al workshop ReDigiTS di IEEE VR 2025: work-in-progress su uno strumento
+        robusto per il rilevamento di intersezioni indipendente dalla rappresentazione numerica.
+      en: >-
+        Short paper presented at the ReDigiTS 2025 workshop at IEEE VR 2025: a work-in-progress on a
+        robust intersection-detection tool independent of the numerical representation used.
+
+conferences:
+
+  - name: SGP 2026
+    year: 2026
+    full: Symposium on Geometry Processing
+    when: { it: 1–3 luglio 2026, en: 1–3 July 2026 }
+    where: { it: "Berna, Svizzera", en: "Bern, Switzerland" }
+ 
+
+  - name: STAG 2025
+    year: 2025
+    full: Smart Tools and Applications in Graphics
+    when: { it: 27-28 novembre 2025, en: 27-28 November 2025 }
+    where: { it: "Genova, Italia", en: "Genoa, Italy" }
+
+  - name: WSCG
+    year: 2025
+    full: International Conferences in Central Europe on Computer Graphics, Visualization and Computer Vision
+    when: { it: 26–29 maggio 2025, en: 26–29 May 2025 }
+    where: { it: "Pilsen, Repubblica Ceca", en: "Pilsen, Czech Republic" }
+    presented: A robust approach to detect intersections between triangles with different numerical representations
+
+  - name: IEEE VR
+    year: 2025
+    full: The 32nd IEEE Conference on Virtual Reality and 3D User Interfaces
+    when: { it: 8–12 marzo 2025, en: 08–12 March 2025 }
+    where: { it: "Saint-Malo, Francia", en: "Saint-Malo, France" }
+    presented: Triangle-triangle intersections with different numerical representations
+
+  - name: STAG 2024
+    year: 2024
+    full: Smart Tools and Applications in Graphics
+    when: { it: 14–15 novembre 2024, en: 14–15 November 2024 }
+    where: { it: "Verona, Italia", en: "Verona, Italy" }
+
+  - name: EICS
+    year: 2024
+    full: The 16th ACM SIGCHI Symposium on Engineering Interactive Computing Systems
+    when: { it: 24–28 giugno 2024, en: 24–28 June 2024 }
+    where: { it: "Cagliari, Italia", en: "Cagliari, Italy" }
+
+skills:
+  - group: { it: Linguaggi di programmazione, en: Programming languages }
+    items: [Python, C, C++, C#, Java, Matlab, SQL]
+  - group: { it: Sistemi operativi, en: Operating systems }
+    items: [Windows, Unix/Linux, macOS]
+  - group: { it: Lingue, en: Languages }
+    items:
+      - { it: Italiano (madrelingua), en: Italian (mother tongue) }
+      - { it: Inglese (fluente), en: English (fluent) }

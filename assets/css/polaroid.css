@@ -1,290 +1,76 @@
+/* Photo gallery: masonry of polaroids + lightbox. Polaroids stay white in dark mode. */
+
+.gallery {
+  columns: 3 280px;
+  column-gap: 28px;
+  padding: 16px 0 24px;
+}
+
 .polaroid {
-      background: white;
-      padding: 10px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      border-radius: 2px;
-      position: relative;
-      margin: 5px;
-    }
+  --rot: 0deg;
+  display: block; width: 100%;
+  margin: 0 0 32px; padding: 12px 12px 14px;
+  break-inside: avoid;
+  background: #fff; color: #222;
+  border: 0; border-radius: 3px; cursor: zoom-in;
+  font: inherit; text-align: center;
+  box-shadow: 0 2px 4px rgb(0 0 0 / .08), 0 10px 24px rgb(0 0 0 / .12);
+  transform: rotate(var(--rot));
+  transition: transform .25s ease, box-shadow .25s ease;
+}
 
-    .polaroid img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
+.polaroid:hover, .polaroid:focus-visible {
+  transform: rotate(0deg) translateY(-6px) scale(1.02);
+  box-shadow: 0 4px 8px rgb(0 0 0 / .1), 0 22px 40px rgb(0 0 0 / .2);
+  position: relative; z-index: 2;
+}
 
-    .caption {
-      font-size: 0.9rem;
-      color: #333;
-      margin-top: 5px;
-    }
+.polaroid img { width: 100%; height: auto; border-radius: 1px; background: #eee; }
 
-    .date-label {
+.polaroid .caption {
+  display: block; margin-top: 12px;
+  font-family: "Caveat", "Segoe Print", cursive; font-size: 1.3rem; line-height: 1.2;
+}
 
-      font-size: 0.75rem;
-      color: #999;
-    }
+.polaroid .meta { display: block; margin-top: 4px; font-size: .75rem; color: #888; letter-spacing: .02em; }
 
-    /* Evita lo scroll quando il lightbox è aperto */
-    body.no-scroll {
-      overflow: hidden;
-    }
+@media (max-width: 600px) {
+  .polaroid { transform: none; }
+}
 
-    /* Overlay (copre tutto lo schermo) */
-    #lightbox {
-      position: fixed;
-      inset: 0;
-      display: none;
-      z-index: 9999;
-    }
+/* ---------- Lightbox ---------- */
 
-    #lightbox.open {
-      display: block;
-    }
+.lightbox {
+  width: 100vw; height: 100vh; max-width: none; max-height: none;
+  margin: 0; padding: clamp(12px, 3vw, 32px);
+  border: 0; background: transparent;
+}
+.lightbox[open] { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; }
+.lightbox::backdrop { background: rgb(8 8 14 / .7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 
-    /* Sfondo scurito + blur */
-    #lightbox .lb-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
+.polaroid.polaroid-large {
+  justify-self: center; width: auto; max-width: min(92vw, 1100px);
+  margin: 0; cursor: default; transform: none;
+  padding: 14px 14px 18px;
+}
+.polaroid.polaroid-large:hover { transform: none; }
+.polaroid.polaroid-large img { width: auto; max-width: 100%; max-height: 74vh; margin: 0 auto; object-fit: contain; }
+.polaroid.polaroid-large figcaption { margin-top: 4px; }
 
-    /* Layer contenuti */
-    #lightbox .lb-layer {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding: clamp(12px, 3vw, 32px);
-      display: grid;
-      place-items: center;
-    }
+.lb-btn {
+  width: 48px; height: 48px; border-radius: 999px; border: 0;
+  background: rgb(255 255 255 / .92); color: #111; cursor: pointer;
+  display: grid; place-items: center; font-size: 1.2rem;
+  box-shadow: 0 8px 20px rgb(0 0 0 / .25);
+  transition: transform .15s;
+}
+.lb-btn:hover { transform: scale(1.06); }
+.lb-close { position: fixed; top: 16px; right: 16px; z-index: 2; }
 
-    /* Polaroid grande (reusa look della gallery, ma dimensioni responsive) */
-    .polaroid.polaroid-large {
-      max-width: min(92vw, 1100px);
-      max-height: min(86vh, 900px);
-      overflow: hidden;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
-      padding: 10px 10px 18px;
-      outline: none;
-      /* focus gestito dal container */
-    }
-
-    .polaroid.polaroid-large img {
-      display: block;
-      max-width: 100%;
-      max-height: 70vh;
-      width: auto;
-      height: auto;
-      margin: 0 auto;
-      object-fit: contain;
-    }
-
-    .polaroid.polaroid-large .caption {
-      margin-top: 10px;
-      font-size: 1.05rem;
-      text-align: center;
-      color: #222;
-    }
-
-    .polaroid.polaroid-large .date-label {
-      margin-top: 2px;
-      font-size: .9rem;
-      text-align: center;
-      color: #666;
-    }
-
-    /* Pulsante chiudi / Torna alla galleria */
-    #lightbox .lb-close {
-      position: absolute;
-      top: clamp(8px, 2vw, 16px);
-      right: clamp(8px, 2vw, 16px);
-      font-size: 28px;
-      line-height: 1;
-      background: #ffffff;
-      border: none;
-      border-radius: 999px;
-      width: 42px;
-      height: 42px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
-    }
-
-    #lightbox .lb-close:hover {
-      transform: scale(1.04);
-    }
-
-    /* Navigazione (prev/next) */
-    #lightbox .lb-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 54px;
-      height: 54px;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 32px;
-      line-height: 1;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
-      display: grid;
-      place-items: center;
-    }
-
-    #lightbox .lb-prev {
-      left: clamp(8px, 2vw, 16px);
-    }
-
-    #lightbox .lb-next {
-      right: clamp(8px, 2vw, 16px);
-    }
-
-    #lightbox .lb-nav:hover {
-      transform: translateY(-50%) scale(1.05);
-    }
-
-    /* Accessibilità focus */
-    #lightbox .lb-close:focus,
-    #lightbox .lb-nav:focus,
-    .polaroid.polaroid-large:focus {
-      outline: 3px solid #5b9dd9;
-      outline-offset: 2px;
-    }
-
-    /* Cursori utili */
-    #lightbox.open img {
-      cursor: zoom-out;
-    }
-
-    /* --- Polaroid: look & animazione hover/focus --- */
-    #photo-gallery .polaroid {
-      --rot: 0deg;
-      /* assegnata via JS */
-      --shift: 0px;
-      /* assegnata via JS */
-      transform-origin: 50% 18%;
-      transform: rotate(var(--rot)) translateY(var(--shift));
-      transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
-      will-change: transform, box-shadow;
-    }
-
-    #photo-gallery .polaroid:is(:hover, :focus-visible) {
-      transform: rotate(0deg) translateY(calc(var(--shift) - 6px)) scale(1.02);
-      box-shadow: 6px 10px 24px rgba(0, 0, 0, .25);
-      filter: saturate(1.05);
-      z-index: 2;
-      /* passa sopra alle altre */
-    }
-
-    /* Cursor già impostato; aumentiamo la sensazione "sparpagliato" con margini verticali variabili */
-    #photo-gallery .col-12.col-sm-6.col-md-4.col-lg-3.stagger-1 {
-      margin-top: 0px;
-    }
-
-    #photo-gallery .col-12.col-sm-6.col-md-4.col-lg-3.stagger-2 {
-      margin-top: 8px;
-    }
-
-    #photo-gallery .col-12.col-sm-6.col-md-4.col-lg-3.stagger-3 {
-      margin-top: 16px;
-    }
-
-    #photo-gallery .col-12.col-sm-6.col-md-4.col-lg-3.stagger-4 {
-      margin-top: 24px;
-    }
-
-    /* Leggera rotazione “pin” anche all’immagine */
-    #photo-gallery .polaroid img {
-      transition: transform .22s ease;
-    }
-
-    #photo-gallery .polaroid:is(:hover, :focus-visible) img {
-      transform: rotate(-.2deg);
-    }
-
-    /* Le landscape possono permettersi immagini un filo più alte */
-    #photo-gallery .polaroid.is-landscape img {
-      max-height: 360px;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    /* Le portrait rimangono più contenute in altezza per coerenza visiva */
-    #photo-gallery .polaroid.is-portrait img {
-      max-height: 460px;
-      /* puoi regolare questi valori */
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    /* Su schermi piccoli, allinea tutto uguale (si torna 1 colonna) */
-    @media (max-width: 576px) {
-
-      #photo-gallery .polaroid.is-landscape img,
-      #photo-gallery .polaroid.is-portrait img {
-        max-height: 56vh;
-        /* comodo su mobile: grande ma non eccessivo */
-      }
-    }
-
-
-    /* Rispetto accessibilità: riduci/azzera animazioni se richiesto */
-    @media (prefers-reduced-motion: reduce) {
-
-      #photo-gallery .polaroid,
-      #photo-gallery .polaroid img {
-        transition: none;
-      }
-
-      #photo-gallery .polaroid {
-        transform: none;
-        /* mantieni layout regolare per chi preferisce meno movimento */
-      }
-    }
-
-
-    /* Evita scroll orizzontale globale */
-    html,
-    body {
-      overflow-x: hidden;
-    }
-
-    /* XS/SM: riduci rotazioni e alza il limite di larghezza */
-    @media (max-width: 576px) {
-      #photo-gallery .polaroid {
-        transform: translateY(0) rotate(0deg) !important;
-        /* no rotazione su mobile */
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.16);
-      }
-
-      /* Gap più piccolo e niente “stagger” verticale eccessivo */
-      #photo-gallery .col-12.col-sm-6.col-md-4.col-lg-3 {
-        margin-top: 0 !important;
-      }
-
-      #photo-gallery .polaroid:is(:hover, :focus-visible) {
-        transform: translateY(-4px) scale(1.01);
-      }
-    }
-
-    /* Lightbox: assicurati di usare tutto lo spazio ma senza sforare */
-    @media (max-width: 576px) {
-      .polaroid.polaroid-large {
-        max-width: 96vw;
-        max-height: 88vh;
-        padding: 8px 8px 14px;
-      }
-
-      .polaroid.polaroid-large img {
-        max-height: 72vh;
-        /* un pelo più alta su mobile */
-      }
-    }
+@media (max-width: 600px) {
+  .lightbox[open] { grid-template-columns: 1fr; }
+  .lb-prev, .lb-next { position: fixed; bottom: 20px; }
+  .lb-prev { left: 20px; }
+  .lb-next { right: 20px; }
+  .polaroid.polaroid-large img { max-height: 70vh; }
+}

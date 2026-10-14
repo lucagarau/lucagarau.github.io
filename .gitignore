@@ -1,0 +1,19 @@
+# Dipendenze (Puppeteer per generare i PDF del CV)
+node_modules/
+
+# Configurazione locale di Claude Code / anteprima
+.claude/
+
+# Log
+npm-debug.log*
+*.log
+
+# File di sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
