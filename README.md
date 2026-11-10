@@ -33,6 +33,8 @@ Esempio di nuova esperienza (va in cima alla lista `experience:`):
 Note sul formato:
 
 - Testi bilingue: `{ it: "...", en: "..." }`. Se il testo contiene una virgola o i due punti, mettilo tra virgolette.
+- `current_position:` contiene la posizione attuale (stessi campi di `experience`): appare in evidenza sotto la presentazione e in cima al CV. Quando cambia, sposta la voce vecchia in `experience` o `education`.
+- In `supervisor` puoi elencare più nomi separati da virgola: l'etichetta diventa "Supervisori"/"Supervisors".
 - `end: present` → "Presente"/"Present". Senza `end` viene mostrato solo l'anno di `start`.
 - Campi opzionali per le pubblicazioni: `pdf`, `code` (link), `pages`, `publisher`, `note`.
 - `phone` e `birthdate` compaiono solo nel CV stampabile/PDF; lasciali vuoti per nasconderli.

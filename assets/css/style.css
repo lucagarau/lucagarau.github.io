@@ -260,6 +260,21 @@ h1, h2, h3 { line-height: 1.2; margin: 0; }
   color: var(--muted); margin-right: 4px;
 }
 
+/* ---------- Current position ---------- */
+
+.position-list { display: grid; gap: 16px; }
+.position {
+  display: grid; grid-template-columns: 48px 1fr; gap: 18px; padding: 22px;
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface) 60%);
+}
+.position .tl-period { color: var(--accent); }
+.position .tl-text { max-width: 75ch; }
+
+@media (max-width: 560px) {
+  .position { grid-template-columns: 1fr; gap: 12px; padding: 18px; }
+}
+
 /* ---------- Publications ---------- */
 
 .pub-list { display: grid; gap: 16px; }

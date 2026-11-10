@@ -11,9 +11,9 @@ Site.loadYaml("/data/cv.yml").then(cv => {
 });
 
 const CV_LABELS = {
-  it: { personal: "Informazioni personali", education: "Formazione", experience: "Esperienza",
+  it: { personal: "Informazioni personali", position: "Posizione attuale", education: "Formazione", experience: "Esperienza",
         publications: "Pubblicazioni", conferences: "Conferenze", skills: "Competenze" },
-  en: { personal: "Personal Information", education: "Education", experience: "Experience",
+  en: { personal: "Personal Information", position: "Current Position", education: "Education", experience: "Experience",
         publications: "Publications", conferences: "Conferences Attended", skills: "Skills" },
 };
 
@@ -46,12 +46,24 @@ function renderCV(cv) {
 
   const sep = ` <span class="sep">|</span> `;
 
+  // Several comma-separated names → plural label ("Supervisori").
+  const supervisor = value => {
+    const text = Site.tr(value);
+    return `${Site.t(text.includes(",") ? "supervisors" : "supervisor")}: ${esc(text)}`;
+  };
+
+  const position = (cv.current_position || []).map(e => entry(
+    [esc(Site.tr(e.title)), esc(Site.tr(e.org)), esc(Site.period(e.start, e.end))].join(sep),
+    esc(Site.tr(e.details || e.summary)),
+    e.supervisor && supervisor(e.supervisor),
+  )).join("");
+
   const education = (cv.education || []).map(e => entry(
     [esc(Site.tr(e.title)), esc(Site.tr(e.org)), esc(Site.period(e.start, e.end))].join(sep),
     e.grade && `${Site.t("grade")}: ${esc(Site.tr(e.grade))}`,
     e.thesis && `${Site.t("thesis")}: <em>“${esc(Site.tr(e.thesis))}”</em>`,
     esc(Site.tr(e.details || e.summary)),
-    e.supervisor && `${Site.t("supervisor")}: ${esc(Site.tr(e.supervisor))}`,
+    e.supervisor && supervisor(e.supervisor),
   )).join("");
 
   const experience = (cv.experience || []).map(e => entry(
@@ -89,6 +101,7 @@ function renderCV(cv) {
         <p class="cv-bio">${esc(Site.tr(p.bio))}</p>
       </div>
     </section>
+    ${section(L.position, position)}
     ${section(L.education, education)}
     ${section(L.experience, experience)}
     ${section(L.publications, publications)}

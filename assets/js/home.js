@@ -37,6 +37,10 @@ function renderHome(cv) {
   document.getElementById("footer-email").innerHTML = links.email
     ? `<a href="mailto:${esc(links.email)}">${esc(links.email)}</a>` : "";
 
+  const positions = cv.current_position || [];
+  document.getElementById("position").hidden = positions.length === 0;
+  document.getElementById("position-list").innerHTML = positions.map(positionItem).join("");
+
   document.getElementById("experience-list").innerHTML = (cv.experience || []).map(timelineItem).join("");
   document.getElementById("education-list").innerHTML = (cv.education || []).map(timelineItem).join("");
   document.getElementById("publication-list").innerHTML = (cv.publications || []).map(publicationItem).join("");
@@ -48,7 +52,7 @@ function timelineItem(item) {
   const extra = [];
   if (item.thesis) extra.push(`<span class="label">${Site.t("thesis")}</span> <em>${esc(Site.tr(item.thesis))}</em>`);
   if (item.grade) extra.push(`<span class="label">${Site.t("grade")}</span> ${esc(Site.tr(item.grade))}`);
-  if (item.supervisor) extra.push(`<span class="label">${Site.t("supervisor")}</span> ${esc(Site.tr(item.supervisor))}`);
+  if (item.supervisor) extra.push(supervisorLine(item.supervisor));
   const summary = item.summary || item.details;
   const current = item.end === "present";
 
@@ -65,6 +69,31 @@ function timelineItem(item) {
         ${extra.length ? `<ul class="tl-meta">${extra.map(e => `<li>${e}</li>`).join("")}</ul>` : ""}
       </div>
     </li>`;
+}
+
+// "Relatore" for one name, "Supervisori" when the field lists several (comma-separated).
+function supervisorLine(value) {
+  const text = Site.tr(value);
+  const key = text.includes(",") ? "supervisors" : "supervisor";
+  return `<span class="label">${Site.t(key)}</span> ${esc(text)}`;
+}
+
+// Highlighted card for current_position: shows the full description, not the short summary.
+function positionItem(item) {
+  const text = item.details || item.summary;
+  return `
+    <article class="card position">
+      <div class="tl-logo">${item.logo ? `<img src="/${esc(item.logo)}" alt="" loading="lazy">` : `<i class="bi bi-briefcase"></i>`}</div>
+      <div>
+        <div class="tl-head">
+          <h3>${esc(Site.tr(item.title))}</h3>
+          <span class="tl-period">${esc(Site.period(item.start, item.end))}</span>
+        </div>
+        <p class="tl-org">${esc(Site.tr(item.org))}</p>
+        ${text ? `<p class="tl-text">${esc(Site.tr(text))}</p>` : ""}
+        ${item.supervisor ? `<ul class="tl-meta"><li>${supervisorLine(item.supervisor)}</li></ul>` : ""}
+      </div>
+    </article>`;
 }
 
 function publicationItem(pub, index) {

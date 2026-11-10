@@ -30,10 +30,10 @@ profile:
   phone: +39 3342573140
   bio:
     it: >-
-      Sono uno sviluppatore specializzato in Computer Graphics e AI, dottorando nazionale in AI & Society presso l'ISTI-CNR e l'Università di Pisa, in collaborazione con l'Università di Cagliari.
+      Sono un dottorando nazionale in AI & Society presso l'ISTI-CNR e l'Università di Pisa, in collaborazione con l'Università di Cagliari.
       Lavoro principalmente nel campo della Digital Fabrication e del Geometry Processing.
     en: >-
-      I am a developer specialized in Computer Graphics and AI, a national PhD student in AI & Society at ISTI-CNR and the University of Pisa, in collaboration with the University of Cagliari.
+      I am a national PhD student in AI & Society at ISTI-CNR and the University of Pisa, in collaboration with the University of Cagliari.
       I mainly work in the field of Digital Fabrication and Geometry Processing.
   links:
     email: lucagarau147@gmail.com
@@ -41,6 +41,23 @@ profile:
     linkedin: https://www.linkedin.com/in/lucagarau/
     instagram: https://www.instagram.com/luca_garau_01/
     scholar: https://scholar.google.com/citations?user=xowI9csAAAAJ&hl=it&oi=ao
+
+# Posizione attuale: mostrata in evidenza sotto la presentazione e in cima al CV.
+# Può contenere più voci (es. dottorato + assegno di ricerca in parallelo).
+current_position:
+  - title: { it: Dottorato di Interesse Nazionale in AI & Society, en: National PhD in AI & Society }
+    org: { it: Università di Pisa | ISTI-CNR, en: University of Pisa | ISTI-CNR }
+    logo: assets/img/logos/isti.jpeg
+    start: 2026
+    end: present
+    supervisor: Dt. Daniela Giorgi, Prof. Gianmarco Cherchi, Dt. Luigi Malamo
+    details:
+      it: >-
+        Dottorato nazionale in AI & Society presso l'ISTI-CNR e l'Università di Pisa, in collaborazione con l'Università di Cagliari.
+        Il lavoro di ricerca si concentra nella Digital Fabrication e nel Geometry Processing, in particolare nella design computazionale di stampi rigidi e riusabili multi pezzo.
+      en: >-
+        National PhD in AI & Society at ISTI-CNR and the University of Pisa, in collaboration with the University of Cagliari.
+        The research work focuses on Digital Fabrication and Geometry Processing, particularly in the computational design of multi-piece rigid molds.
 
 experience:
   - title: Research Fellow
@@ -105,20 +122,6 @@ experience:
         approximation, nonlinear equation solving, and includes practical exercises in Matlab.
 
 education:
-
-  - title: { it: Dottorato di Interesse Nazionale in Ai & Society, en: National PhD in AI & Society }
-    org: { it: Università di Pisa | ISTI-CNR, en: University of Pisa | ISTI-CNR }
-    logo: assets/img/logos/isti.jpeg
-    start: 2026
-    end: present
-    supervisor: Dt. Daniela Giorgi, Prof. Gianmarco Cherchi, Dt. Luigi Malamo
-    details:
-      it: >-
-        Dottorato nazionale in AI & Society presso l'ISTI-CNR e l'Università di Pisa, in collaborazione con l'Università di Cagliari.
-        Il lavoro di ricerca si concentra nella Digital Fabrication e nel Geometry Processing, in particolare nella design computazionale di stampi rigidi e riusabili multi pezzo.
-      en: >-
-        National PhD in AI & Society at ISTI-CNR and the University of Pisa, in collaboration with the University of Cagliari.
-        The research work focuses on Digital Fabrication and Geometry Processing, particularly in the computational design of multi-piece rigid molds.
 
   - title: { it: Laurea Magistrale in Informatica (Graphics and Vision), en: Master's Degree in Computer Science (Graphics and Vision) }
     org: { it: Università di Cagliari, en: University of Cagliari }
